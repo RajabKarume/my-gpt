@@ -52,11 +52,12 @@
 }
 .chat-log{
   text-align: left;
-  display: flex;
 }
 .chat-message{
-  background-color: rgb(255, 255, 255, 0.1);
   width: 100%;
+}
+.chat-message.gpt{
+  background-color: #444654;
 }
 .chat-message-center{
   margin-left: auto;
@@ -73,6 +74,12 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+}
+.chat-image.gpt{
+  background-color: #0da37f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .message{
   padding-left: 40px;

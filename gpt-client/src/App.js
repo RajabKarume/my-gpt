@@ -1,6 +1,6 @@
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faBrain } from '@fortawesome/free-solid-svg-icons'
 function App() {
   return (
     <div className="App">
@@ -12,6 +12,12 @@ function App() {
           <div className='chat-message'>
             <div className='chat-message-center'>
               <div className='chat-image'></div>
+              <div className='message'>Hello World</div>
+            </div>
+          </div>
+          <div className='chat-message gpt'>
+            <div className='chat-message-center'>
+              <div className='chat-image gpt'><FontAwesomeIcon icon={faBrain} size='lg' /></div>
               <div className='message'>Hello World</div>
             </div>
           </div>
