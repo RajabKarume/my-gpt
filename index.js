@@ -1,5 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 const express = require("express")
+const bodyParser = require('body-parser')
+const cors = require('cors')
 require('dotenv').config()
 
 const configuration = new Configuration({
@@ -10,8 +12,10 @@ const openai = new OpenAIApi(configuration);
 
 const app = express()
 const port = 3080
+app.use(bodyParser.json())
+app.use(cors())
 
-app.post('/', async (req, res) => {
+app.post('/', cors(), async (req, res) => {
     const { message } = req.body
     console.log(message)
     // const response = await openai.createCompletion({
