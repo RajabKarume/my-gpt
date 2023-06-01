@@ -9,33 +9,35 @@ function App() {
   const [chatLog, setChatLog] = useState([{
     user: 'gpt',
     message: 'How can I help?'
-  },
-  {
-    user: 'me',
-    message: `I'm stuck writing code`
   }])
 
+  function clearChat(){
+    setChatLog([])
+  }
   async function handlesubmit(e){
     e.preventDefault()
-    setChatLog([...chatLog, {user: 'me' , message: `${input}`}])
+    let chatLogNew = [...chatLog, {user: 'me' , message: `${input}`}]
     setInput("")
+    setChatLog(chatLogNew)
+    const messages = chatLogNew.map((message) => message.message).join("")
     const response = await fetch("http://localhost:3080/",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        message: chatLog.map((message) => message.message).join("")
+        message: messages
       })
     })
     const data = await response.json()
-    console.log(data)
+    await setChatLog([...chatLogNew, {user: 'gpt' , message: `${data.message}`}])
+    console.log(data.message)
   }
 
   return (
     <div className="App">
       <aside className="sidemenu">
-        <button className="sidemenu-button"><FontAwesomeIcon icon={faPlus} style={{paddingRight:"10px"}} />New Chat</button>
+        <button onClick={clearChat} className="sidemenu-button"><FontAwesomeIcon icon={faPlus} style={{paddingRight:"10px"}} />New Chat</button>
       </aside>
       <section className="chatbox">
         <div className='chat-log' >
